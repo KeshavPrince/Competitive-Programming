@@ -1,0 +1,33 @@
+const int MAX = 100050;
+vector<ll> adj[MAX];
+bool vis[MAX];
+ll dis[MAX];
+void dijkstra(ll n,ll src){
+    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll,ll> >> pq;
+    for (int i = 0; i < n; i++) {
+        dis[i] = INF;
+        vis[i] = false;
+    }
+
+    dis[src] = 0;
+    pq.push({0, src});
+    while (!pq.empty())
+    {
+        pair<ll,ll> tp = pq.top();
+        pq.pop();
+        ll node = tp.second;
+        ll d = tp.first;
+        if (!vis[node]) 
+        {
+            vis[node] = true;
+            for (ll i = 0; i < adj[node].size(); i++) {
+                ll v = adj[node][i].first;
+                ll w = adj[node][i].second;
+                if (dis[v] > d + w) {
+                    dis[v] = d + w;
+                    pq.push({dis[v], v});
+                }
+            }
+        }
+    }
+}
