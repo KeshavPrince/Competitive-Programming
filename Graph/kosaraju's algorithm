@@ -1,0 +1,74 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+#define endl "\n"
+#define fi first
+#define sec second 
+#define pb push_back
+#define test cout<<"debuged\n";
+#define INF ll(1e18)
+#define MOD 1000000007
+#define debug(x) cout<<x<<"\n";
+#define pll pair<ll,ll>
+#define all(v) v.begin(),v.end()
+#define MAX 500005
+
+vector<ll> adj[MAX],adjr[MAX];
+bool vis[MAX];
+stack<ll> st;
+
+void dfs1(ll i)
+{
+   if(!vis[i])
+   {
+    vis[i]=true;
+    for(auto x:adj[i])
+    {
+      if(!vis[x])
+        dfs1(x);
+    }
+    st.push(i);
+   }
+}
+void dfs2(ll i)
+{
+    vis[i]=true;
+    for(auto x:adjr[i])
+    {
+      if(!vis[x])
+      {
+        dfs2(x);
+      }
+    }
+}
+
+int main()
+{
+    ll n;
+    cin>>n;
+    ll m,x,y;
+    cin>>m;
+    while(m--)
+    {
+      cin>>x>>y;
+      adj[x].pb(y);
+      adjr[y].pb(x);
+    }
+    memset(vis,false,MAX);
+    for(ll i=1;i<=n;i++)
+      {
+        if(!vis[i])
+          dfs1(i);
+      }
+
+    memset(vis,false,MAX);
+    while(!st.empty())
+    {
+      ll x=st.top();
+      st.pop();
+      if(!vis[x])
+      {
+        dfs2(x);
+      }
+    }
+}
