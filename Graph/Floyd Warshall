@@ -1,0 +1,20 @@
+void floydWarshall (int adj[][V])  
+{  
+    for (ll i = 0; i < V; i++)  
+        for (ll j = 0; j < V; j++)  
+            dis[i][j] = adj[i][j];  
+  
+  
+    for (ll k = 0; k < V; k++)  
+    {  
+        for (ll i = 0; i < V; i++)  
+        {  
+            for (ll j = 0; j < V; j++)  
+            {  
+                if (dis[i][k] + dis[k][j] < dis[i][j])  
+                    dis[i][j] = dis[i][k] + dis[k][j];  
+            }  
+        }  
+    }  
+    //Now in dis[][] have all pair of shortest path
+}  
