@@ -7,7 +7,7 @@ ll query(int idx)
     ll sum = 0;
     while (idx) {
         sum += bit[idx];
-        indx -= (idx & -idx);
+        idx -= (idx & -idx);
     }
     return sum;
 }
