@@ -1,3 +1,4 @@
 # Competitive-Programming
-This is my first contribution to the github and competitive programming.
-thank you
+This is my first contribution competitive programming community.
+thank you.
+It contains some important templates.
