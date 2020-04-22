@@ -12,23 +12,23 @@ struct Hash
         rhash[n - 1] = s[n - 1] - 'a' + 1;
         for(ll i = 1; i < n; i++) 
         {
-            powr[i] = (powr[i - 1] * p) % mod;
-            fhash[i] = ((fhash[i - 1] * p) % mod + (s[i] - 'a' + 1)) % mod;
-            rhash[n - 1 - i] = ((rhash[n - i] * p) % mod + s[n - i - 1] - 'a' + 1) % mod;
+            powr[i] = (powr[i - 1] * p) % MOD;
+            fhash[i] = ((fhash[i - 1] * p) % MOD + (s[i] - 'a' + 1)) % MOD;
+            rhash[n - 1 - i] = ((rhash[n - i] * p) % MOD + s[n - i - 1] - 'a' + 1) % MOD;
         }
     }
     ll frontHash(ll i, ll j) 
     {
         if(i == 0) 
            return fhash[j];
-        ll hashvalue = (fhash[j] - (fhash[i - 1] * powr[j - i + 1]) % mod + mod) % mod;
+        ll hashvalue = (fhash[j] - (fhash[i - 1] * powr[j - i + 1]) % MOD + MOD) % MOD;
         return hashvalue;
     }
     ll reverseHash(ll i, ll j) 
     {
         if(j == n - 1) 
             return rhash[i];
-        ll hashvalue = (rhash[i] - (rhash[j + 1] * powr[j - i + 1]) % mod + mod) % mod;
+        ll hashvalue = (rhash[i] - (rhash[j + 1] * powr[j - i + 1]) % MOD + MOD) % MOD;
         return hashvalue;
      }
     bool isPalindrome(ll i, ll j) 
